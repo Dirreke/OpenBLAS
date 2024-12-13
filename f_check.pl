@@ -245,6 +245,13 @@ if ($compiler eq "") {
 	    $vendor = FLANG;
 	    $bu     = "_";
 	    $openmp = "-fopenmp";
+        $data = `$compiler -v 2>&1 > /dev/null`;
+        $v = substr($data, index($data, "version ") + 8);
+        $v = substr($v, 0, index($v, "."));
+        $major = substr($v, 0, index($v, "."));
+        if ($major >= 17 ) {
+			$vendor = FLANGNEW;
+        }
 	}
 
 	if ($compiler =~ /nagfor/) {
@@ -410,6 +417,10 @@ if ($link ne "") {
 }
 
 if ($vendor eq "FLANG"){
+    $linker_a .= "-lflang"
+}
+
+if ($vendor eq "FLANGNEW"){
     $linker_a .= "-lflang"
 }
 
