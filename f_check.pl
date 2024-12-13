@@ -88,7 +88,7 @@ if ($compiler eq "") {
 		$openmp = "-fopenmp";
 	    } else {
 		if ($compiler =~ /flang/) {
-  		    $vendor = FLANG;
+  		    $vendor = FLANGA;
 		    $openmp = "-fopenmp";
 		    $data = `$compiler -v 2>&1 > /dev/null`;
 		    $v = substr($data, index($data, "version ") + 8);
@@ -242,7 +242,7 @@ if ($compiler eq "") {
 	}
 
 	if ($compiler =~ /flang/) {
-	    $vendor = FLANG;
+	    $vendor = FLANGB;
 	    $bu     = "_";
 	    $openmp = "-fopenmp";
         $data = `$compiler -v 2>&1 > /dev/null`;
