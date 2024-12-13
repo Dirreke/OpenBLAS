@@ -20,6 +20,7 @@ HOSTARCH=x86_64
 endif
 
 echo $F_COMPILER
+echo "121231231231312313212312313123123---------------------------------------------------------------"
 
 # Catch conflicting usage of ARCH in some BSD environments
 ifeq ($(ARCH), amd64)
