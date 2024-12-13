@@ -19,6 +19,8 @@ ifeq ($(HOSTARCH), amd64)
 HOSTARCH=x86_64
 endif
 
+echo $F_COMPILER
+
 # Catch conflicting usage of ARCH in some BSD environments
 ifeq ($(ARCH), amd64)
 override ARCH=x86_64
