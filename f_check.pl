@@ -91,12 +91,12 @@ if ($compiler eq "") {
   		    $vendor = FLANG;
 		    $openmp = "-fopenmp";
 		    $data = `$compiler -v 2>&1 > /dev/null`;
-		    $v="${data#*version *}"
-		    $v="${v%%*.}"
-		    $major="${v%%.*}"
-		    if [ "$major" -ge 17 ]; then
-			vendor=FLANGNEW
-		    fi	
+		    $v = substr($data, index($data, "version ") + 8);
+		    $v = substr($v, 0, index($v, "."));
+		    $major = substr($v, 0, index($v, "."));
+		    if ($major >= 17 ) {
+			$vendor = FLANGNEW;
+		    }
 	    } elsif ($compiler =~ /ifort/ || $compiler =~ /ifx/) {
 		    $vendor = INTEL;
 		    $openmp = "-fopenmp";
