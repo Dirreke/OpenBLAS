@@ -19,8 +19,6 @@ ifeq ($(HOSTARCH), amd64)
 HOSTARCH=x86_64
 endif
 
-$(warning ………………123123123123123123……$(F_COMPILER))
-
 # Catch conflicting usage of ARCH in some BSD environments
 ifeq ($(ARCH), amd64)
 override ARCH=x86_64
@@ -377,6 +375,8 @@ DLLWRAP = $(CROSS_SUFFIX)dllwrap
 OBJCOPY = $(CROSS_SUFFIX)objcopy
 OBJCONV = $(CROSS_SUFFIX)objconv
 
+
+$(warning ………………123123123123123123……$(F_COMPILER))
 
 # When fortran support was either not detected or actively deselected, only build BLAS.
 ifeq ($(NOFORTRAN), 1)
