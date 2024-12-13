@@ -33,7 +33,7 @@ if ($compiler eq "") {
               "ppuf77", "ppuf95", "ppuf90", "ppuxlf",
 	      "pathf90", "pathf95",
 	      "pgf95", "pgf90", "pgf77", "pgfortran", "nvfortran",
-	      "flang", "egfortran",
+	      "flang", "flang-new", "egfortran",
               "ifort", "nagfor", "ifx", "ftn", "crayftn");
 
 OUTER:
@@ -88,8 +88,15 @@ if ($compiler eq "") {
 		$openmp = "-fopenmp";
 	    } else {
 		if ($compiler =~ /flang/) {
-		    $vendor = FLANG;
+  		    $vendor = FLANG;
 		    $openmp = "-fopenmp";
+		    $data = `$compiler -v 2>&1 > /dev/null`;
+		    $v="${data#*version *}"
+		    $v="${v%%*.}"
+		    $major="${v%%.*}"
+		    if [ "$major" -ge 17 ]; then
+			vendor=FLANGNEW
+		    fi	
 	    } elsif ($compiler =~ /ifort/ || $compiler =~ /ifx/) {
 		    $vendor = INTEL;
 		    $openmp = "-fopenmp";
